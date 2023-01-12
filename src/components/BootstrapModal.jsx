@@ -4,23 +4,45 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.css";
 import { toast } from "react-toastify";
 import { getAuth, updateProfile } from "firebase/auth";
-import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { getDocs, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
-import { updateEmail } from "firebase/auth";
+import { collection } from "firebase/firestore";
+import { useEffect } from "react";
 
 function BootstrapModal(props) {
   const auth = getAuth();
-  //const userRef = db.collection("users").doc(auth.currentUser.uid);
-  //const userSnapshot = await userRef.get();
-
-  //console.log(userRef);
+  const currentUser = auth.currentUser;
 
   const [formData, setFormData] = useState({
-    name: auth.currentUser.displayName,
+    name: "",
     email: auth.currentUser.email,
+    lastName: "",
+    phoneNumber: "",
   });
 
-  //console.log(auth.currentUser.displayName);
+  const getUserCollection = async () => {
+    // Get user Collection
+    let userData;
+    const userCollection = await getDocs(collection(db, "users"));
+    // Loop user collection
+    userCollection.forEach((doc) => {
+      // Check if current user is equal with user collection data
+      if (currentUser.uid === doc.id) {
+        // Store it in user data state
+        //setUserData(doc.data());
+        userData = doc.data();
+        setFormData({
+          name: auth.currentUser.displayName,
+          lastName: userData.lastName,
+          phoneNumber: userData.phoneNumber,
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    getUserCollection();
+  }, []);
 
   const handleClose = () => {
     props.onClose();
@@ -33,45 +55,62 @@ function BootstrapModal(props) {
     }));
   };
 
-  function isValidEmail(email) {
-    // Use a regular expression to check for a valid email format
-    const emailRegex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return emailRegex.test(email);
+  function isValidPhoneNumber(phoneNumber) {
+    phoneNumber = phoneNumber.replace(/ /g, "");
+    if (phoneNumber.length !== 9 && phoneNumber.length !== 10) {
+      return false;
+    }
+    if (
+      !["091", "092", "095", "097", "098", "099"].includes(
+        phoneNumber.substring(0, 3)
+      )
+    ) {
+      return false;
+    }
+    return true;
   }
 
   const submitChanges = async () => {
-    //check email and name
+    //check firstName and lastName
+    formData.name = formData.name.replace(/ /g, "");
+    formData.lastName = formData.lastName.replace(/ /g, "");
+
     if (formData.name.length < 3) {
       toast.error("Nevažeće ime");
+      return;
     }
-    if (!isValidEmail(formData.email)) {
-      toast.error("Nevažeći email");
+    if (formData.lastName.length < 3) {
+      toast.error("Nevažeće prezime");
+      return;
     }
+
+    if (!isValidPhoneNumber(formData.phoneNumber)) {
+      toast.error("Nevažeći broj telefona");
+      return;
+    }
+
     //save to db
-    if (formData.name.length >= 3 && isValidEmail(formData.email)) {
+    if (formData.name.length >= 3 && formData.lastName.length >= 3) {
       try {
         //update in fb
         await updateProfile(auth.currentUser, {
           displayName: formData.name,
-          email: formData.email,
         });
         //update in firestore
         //mjenja u collectionu
         const userRef = doc(db, "users", auth.currentUser.uid);
         await updateDoc(userRef, {
           firstName: formData.name,
-          email: formData.email,
+          lastName: formData.lastName,
+          phoneNumber: formData.phoneNumber,
         });
-
-        //change in authentication
 
         toast.success(`Uspješeno spremljene promjene`);
       } catch (error) {
         console.log(error);
       }
     } else {
-      console.log(`ne radi`);
+      toast.error(`Unesite ispravne podatke `);
     }
     //close modal
     props.onClose();
@@ -96,15 +135,25 @@ function BootstrapModal(props) {
             id="name"
             value={formData.name}
           />
-          <p>Novi email: </p>
+          <p>Prezime: </p>
           <input
             type="text"
-            placeholder="Novi email"
+            placeholder="Prezime"
+            className="modalInputWidth inputMarginBottom"
+            name="modalInput"
+            onChange={onChange}
+            id="lastName"
+            value={formData.lastName}
+          />
+          <p>Broj mobitela: </p>
+          <input
+            type="text"
+            placeholder="Broj mobitela"
             className="modalInputWidth"
             name="modalInput"
             onChange={onChange}
-            id="email"
-            value={formData.email}
+            id="phoneNumber"
+            value={formData.phoneNumber}
           />
         </Modal.Body>
         <Modal.Footer>

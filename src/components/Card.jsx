@@ -3,7 +3,7 @@ import CardLogo from "../assests/cardLogo.jpg.png";
 const Card = () => {
   return (
     <div className="cardContainer" id="card-id">
-      <img src={CardLogo} alt="logo" />
+      <img src={CardLogo} alt="logo" className="cardComponentImage" />
       <p className="cardTekst">
         Ritual Barbershop rezultat je vizije dvojca splitskih brijača koji su
         ciljem zadali udahnuti stari sjaj gradskih brijačnica u život modernog

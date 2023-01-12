@@ -1,3 +1,4 @@
+/*
 import { Link } from "react-router-dom";
 import Logo from "../assests/ritualLogo.jpg";
 import Footer from "../components/Footer";
@@ -208,11 +209,9 @@ const Rezerviraj = () => {
     const auth = getAuth();
     if (auth !== null && auth !== undefined && auth.currentUser !== null) {
       return auth.currentUser.email;
+    } else {
+      navigate("/sign-in");
     }
-  };
-
-  const goToSignIn = () => {
-    navigate("/sign-in");
   };
 
   useEffect(() => {
@@ -234,7 +233,7 @@ const Rezerviraj = () => {
             <img src={Logo} alt="logo" className="logoImg" />
           </Link>
 
-          <div className="buttons-rezerviraj">
+          <div className="buttons">
             {loggedIn ? (
               <Link to="/costumer">
                 <button className="buttonRezerviraj">Profil</button>
@@ -667,10 +666,7 @@ const Rezerviraj = () => {
                   Rezerviraj
                 </button>
               ) : (
-                <button
-                  className="buttonRezerviraj bookingModalButton"
-                  onClick={goToSignIn}
-                >
+                <button className="buttonRezerviraj bookingModalButton">
                   <LockSharpIcon className="lockIcon" />
                   Rezerviraj (potrebna prijava)
                 </button>
@@ -686,3 +682,4 @@ const Rezerviraj = () => {
 };
 
 export default Rezerviraj;
+*/

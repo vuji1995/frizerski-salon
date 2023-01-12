@@ -1,7 +1,20 @@
 import Logo from "../assests/ritualLogo.jpg";
 import { Link } from "react-router-dom";
+import { useAuthStatus } from "../hooks/useAuthStatus";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseSharpIcon from "@mui/icons-material/CloseSharp";
+import { useState } from "react";
+import { useContext } from "react";
+import Context from "../Context/Context";
+import { useEffect } from "react";
 
 const Header = () => {
+  const { modalOpened, setModalOpened } = useContext(Context);
+
+  const openModal = () => {
+    setModalOpened((oldState) => !oldState);
+  };
+
   const scrollIntoCard = () => {
     const cardElement = document.getElementById(`card-id`);
     cardElement.scrollIntoView({ behavior: "smooth" });
@@ -21,6 +34,26 @@ const Header = () => {
     const korisniciElement = document.getElementById(`korisnici-id`);
     korisniciElement.scrollIntoView({ behavior: "smooth" });
   };
+
+  const { loggedIn, checkingStatus } = useAuthStatus();
+
+  const [muiIconStyle, setMuiIconStyle] = useState({
+    display: "none",
+  });
+
+  function updateMuiIconClassName() {
+    if (window.innerWidth < 850) {
+      setMuiIconStyle({ display: "block", cursor: "pointer" });
+    } else {
+      setMuiIconStyle({ display: "none" });
+    }
+  }
+
+  useEffect(() => {
+    updateMuiIconClassName();
+    window.addEventListener("resize", updateMuiIconClassName);
+    return () => window.removeEventListener("resize", updateMuiIconClassName);
+  }, []);
 
   return (
     <header>
@@ -42,10 +75,23 @@ const Header = () => {
             Korisnici
           </li>
         </ul>
+
+        <MenuIcon
+          className="hamburger-menu"
+          style={muiIconStyle}
+          onClick={openModal}
+        />
+
         <div className="buttons">
-          <Link to="/sign-in">
-            <button className="buttonPrijava">Prijava</button>
-          </Link>
+          {loggedIn ? (
+            <Link to="/costumer">
+              <button className="buttonPrijava">Profil</button>
+            </Link>
+          ) : (
+            <Link to="/sign-in">
+              <button className="buttonPrijava">Prijava</button>
+            </Link>
+          )}
           <Link to="/book-now">
             <button className="buttonRezerviraj">Rezerviraj odmah</button>
           </Link>

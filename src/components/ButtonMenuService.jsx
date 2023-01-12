@@ -6,10 +6,18 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import HairIcon from "../assests/hair.png";
 import BeardIcon from "../assests/beard.png";
 import BeardAndHairIcon from "../assests/beardAndHair2.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ButtonMenuService(props) {
   const [service, setService] = useState("Izaberi uslugu");
+  const [buttonStyles, setButtonStyles] = useState({
+    width: "100%",
+    backgroundColor: "#ffffff",
+    color: "rgba(0, 0, 0, 0.594)",
+    borderRadius: "10px",
+    boxShadow: "none",
+    border: "1px solid rgba(0, 0, 0, 0.194)",
+  });
 
   function handleClick() {
     props.onRemoveText();
@@ -19,25 +27,18 @@ export default function ButtonMenuService(props) {
     setService(e.currentTarget.textContent);
   };
 
-  const stylings = {
-    width: "100%",
-    backgroundColor: "#ffffff",
-    border: "1px solid rgba(0, 0, 0, 0.194)",
-    color: "rgba(0, 0, 0, 0.594)",
-    borderRadius: "10px",
-  };
-
-  let currentColor = "#ffffff";
-
   function changeColor() {
-    if (currentColor === "#ffffff") {
-      currentColor = "#ab0008";
-    } else {
-      currentColor = "#ffffff";
-    }
-    document.getElementById("myObject").style.backgroundColor = currentColor;
-    document.getElementById("myObject").style.color = "#ffffff";
+    setButtonStyles({
+      ...buttonStyles,
+      backgroundColor: "#ab0008",
+      color: "#ffffff",
+    });
   }
+
+  // pass state to parent
+  useEffect(() => {
+    props.onServiceTypeChange(service);
+  }, [service]);
 
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
@@ -46,10 +47,10 @@ export default function ButtonMenuService(props) {
           <Button
             variant="contained"
             {...bindTrigger(popupState)}
-            style={stylings}
+            style={buttonStyles}
             id="myObject"
           >
-            <p>{service}</p>
+            <p className="removeMarginP">{service}</p>
           </Button>
           <Menu {...bindMenu(popupState)}>
             <MenuItem
@@ -60,7 +61,10 @@ export default function ButtonMenuService(props) {
                 handleClick();
                 popupState.close();
               }}
-              style={{ display: "flex", alignItems: "center" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
             >
               <img
                 src={HairIcon}

@@ -1,8 +1,11 @@
 import SignUp from "../assests/sign-up.svg";
 import LogIn from "../assests/log-in.svg";
 import { Link } from "react-router-dom";
+import { useAuthStatus } from "../hooks/useAuthStatus";
 
 const PostaniClan = () => {
+  const { loggedIn, checkingStatus } = useAuthStatus();
+
   return (
     <div className="postaniClanDiv" id="korisnici-id">
       <div className="postaniClanContainer">
@@ -20,9 +23,15 @@ const PostaniClan = () => {
           <p className="logInText">
             Ako ste već registrirani korisnik, prijavite se.
           </p>
-          <Link to="/sign-in">
-            <button className="logInButton">Prijava</button>
-          </Link>
+          {loggedIn ? (
+            <Link to="/costumer">
+              <button className="logInButton">Prijava</button>
+            </Link>
+          ) : (
+            <Link to="/sign-in">
+              <button className="logInButton">Prijava</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

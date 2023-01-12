@@ -7,21 +7,29 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoute from "./components/PrivateRoute";
+import Rezervacije from "./pages/Rezervacije";
+import { ContextProvider } from "./Context/Context";
 
 function App() {
   return (
     <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/book-now" element={<Rezerviraj />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/costumer" element={<Profile />} />
-        </Routes>
-      </Router>
-      <ToastContainer />
+      <ContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/book-now" element={<Rezerviraj />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/costumer" element={<PrivateRoute />}>
+              <Route path="/costumer" element={<Profile />} />
+              <Route path="/costumer/reservations" element={<Rezervacije />} />
+            </Route>
+          </Routes>
+        </Router>
+        <ToastContainer />
+      </ContextProvider>
     </div>
   );
 }

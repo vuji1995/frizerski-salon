@@ -66,7 +66,6 @@ const SignIn = () => {
         password
       );
       if (userCredential.user) {
-        console.log(userCredential);
         navigate("/costumer");
       }
       toast.success(`You have successfuly logged in!`);

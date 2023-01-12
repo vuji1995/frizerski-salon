@@ -55,7 +55,7 @@ const SignUp = () => {
     password2: "",
   });
 
-  const { firstName, lastName, email, phoneNumber, password, password2 } =
+  let { firstName, lastName, email, phoneNumber, password, password2 } =
     formData;
 
   const onChange = (e) => {
@@ -65,40 +65,98 @@ const SignUp = () => {
     }));
   };
 
+  function isValidPhoneNumber(phoneNumber) {
+    phoneNumber = phoneNumber.replace(/ /g, "");
+    if (phoneNumber.length !== 9 && phoneNumber.length !== 10) {
+      return false;
+    }
+    if (
+      !["091", "092", "095", "097", "098", "099"].includes(
+        phoneNumber.substring(0, 3)
+      )
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  const isEmailValid = (email) => {
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(email);
+  };
+
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const auth = getAuth();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      updateProfile(auth.currentUser, {
-        displayName: firstName,
-        phoneNumber: phoneNumber,
-      });
+    //check inputs
+    firstName = firstName.replace(/ /g, "");
+    lastName = lastName.replace(/ /g, "");
+    password = password.replace(/ /g, "");
+    password2 = password2.replace(/ /g, "");
+    let error = false;
 
-      const formDataCopy = {
-        ...formData,
-      };
-      delete formDataCopy.password;
-      delete formDataCopy.password2;
-      formDataCopy.timestamp = serverTimestamp();
+    if (firstName.length < 3) {
+      toast.error("Nevažeće ime");
+      error = true;
+    }
 
-      await setDoc(doc(db, "users", user.uid), formDataCopy);
-      toast.success("You have successfuly signed up!");
-      navigate("/book-now");
-    } catch (error) {
-      toast.error(`Error while registering!`);
+    if (lastName.length < 3) {
+      toast.error("Nevažeće prezime");
+      error = true;
+    }
+
+    if (!isEmailValid(email)) {
+      toast.error("Nevažeći email");
+      error = true;
+    }
+
+    if (!isValidPhoneNumber(formData.phoneNumber)) {
+      toast.error("Nevažeći broj telefona");
+      error = true;
+    }
+
+    if (password2 !== password) {
+      toast.error("Lozinke nisu jednake!");
+      error = true;
+    }
+
+    if (password.length < 6) {
+      toast.error("Unesite minimalno 6 znakova za lozinku!");
+      error = true;
+    }
+
+    if (!error) {
+      try {
+        const auth = getAuth();
+
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: firstName,
+          phoneNumber: phoneNumber,
+        });
+
+        const formDataCopy = {
+          ...formData,
+        };
+        delete formDataCopy.password;
+        delete formDataCopy.password2;
+        formDataCopy.timestamp = serverTimestamp();
+
+        await setDoc(doc(db, "users", user.uid), formDataCopy);
+        toast.success("You have successfuly signed up!");
+        navigate("/book-now");
+      } catch (error) {
+        toast.error(`Error while registering!`);
+      }
     }
   };
-
-  //const testAuth = getAuth();
-  //console.log(testAuth);
 
   return (
     <div>

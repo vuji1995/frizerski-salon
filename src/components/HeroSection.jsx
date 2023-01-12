@@ -31,8 +31,6 @@ const HeroSection = () => {
 
   const { loggedIn, checkingStatus } = useAuthStatus();
 
-  console.log(loggedIn);
-
   return (
     <div className="heroMain">
       {modalOpened ? (

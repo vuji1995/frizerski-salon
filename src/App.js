@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Rezervacije from "./pages/Rezervacije";
+import Lokacija from "./pages/Lokacija";
 import { ContextProvider } from "./Context/Context";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/book-now" element={<Rezerviraj />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/location" element={<Lokacija />} />
             <Route path="/costumer" element={<PrivateRoute />}>
               <Route path="/costumer" element={<Profile />} />
               <Route path="/costumer/reservations" element={<Rezervacije />} />

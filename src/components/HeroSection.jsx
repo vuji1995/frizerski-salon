@@ -6,9 +6,10 @@ import { useContext } from "react";
 import Context from "../Context/Context";
 import Logo from "../assests/ritualLogo.jpg";
 import { useAuthStatus } from "../hooks/useAuthStatus";
+import { useEffect } from "react";
 
 const HeroSection = () => {
-  const { modalOpened } = useContext(Context);
+  const { modalOpened, setModalOpened } = useContext(Context);
   const scrollIntoCard = () => {
     const cardElement = document.getElementById(`card-id`);
     cardElement.scrollIntoView({ behavior: "smooth" });
@@ -31,6 +32,15 @@ const HeroSection = () => {
 
   const { loggedIn, checkingStatus } = useAuthStatus();
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 850) {
+        setModalOpened(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="heroMain">
       {modalOpened ? (
@@ -50,6 +60,12 @@ const HeroSection = () => {
               onClick={scrollIntoKorisnici}
             >
               Korisnici
+            </li>
+            <li
+              className="headerLiItem-hamburger"
+              onClick={scrollIntoKorisnici}
+            >
+              Lokacija
             </li>
           </ul>
           <div className="buttons-hamburger">
@@ -75,7 +91,7 @@ const HeroSection = () => {
       <div className="mainContainer">
         <div className="heroTekst">
           <p className="heroTekstTitle">Barbershop Ritual</p>
-          <p className="regularTekst">Tradicionalna usluga na moderan nacin</p>
+          <p className="regularTekst">Tradicionalna usluga na moderan način.</p>
           <Link to="/book-now">
             <button className="buttonRezerviraj xl">Rezerviraj odmah</button>
           </Link>

@@ -6,7 +6,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import * as React from "react";
 import { db } from "../firebase.config";
 import BootstrapModal from "../components/BootstrapModal";
-import { faPray } from "@fortawesome/free-solid-svg-icons";
 import { collection } from "firebase/firestore";
 import { getDocs, doc, updateDoc } from "firebase/firestore";
 import { useEffect } from "react";
@@ -57,7 +56,7 @@ const Profile = () => {
 
   useEffect(() => {
     getUserCollection();
-  }, []);
+  }, [formData]);
 
   const deleteAccount = () => {
     const result = window.confirm(

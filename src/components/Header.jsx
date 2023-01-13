@@ -1,8 +1,7 @@
 import Logo from "../assests/ritualLogo.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import { useState } from "react";
 import { useContext } from "react";
 import Context from "../Context/Context";
@@ -10,7 +9,7 @@ import { useEffect } from "react";
 
 const Header = () => {
   const { modalOpened, setModalOpened } = useContext(Context);
-
+  const navigate = useNavigate();
   const openModal = () => {
     setModalOpened((oldState) => !oldState);
   };
@@ -49,6 +48,10 @@ const Header = () => {
     }
   }
 
+  const goToLokacija = () => {
+    navigate("/location");
+  };
+
   useEffect(() => {
     updateMuiIconClassName();
     window.addEventListener("resize", updateMuiIconClassName);
@@ -73,6 +76,9 @@ const Header = () => {
           </li>
           <li className="headerLiItem" onClick={scrollIntoKorisnici}>
             Korisnici
+          </li>
+          <li className="headerLiItem" onClick={goToLokacija}>
+            Lokacija
           </li>
         </ul>
 

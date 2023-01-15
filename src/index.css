@@ -1095,6 +1095,18 @@ button {
 .leafletContainer {
   height: 500px;
   width: 100%;
+  margin-bottom: 100px;
+}
+
+.buttonMojeRezervacije {
+  padding: 10px 15px;
+  border: 1px solid rgb(171, 0, 8);
+  border-radius: 0.75rem;
+  background-color: rgb(171, 0, 8);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .labelAdresa {
@@ -1140,6 +1152,7 @@ button {
   .footerRight {
     text-align: center;
     margin-top: 20px;
+    margin-left: 0;
   }
 
   .footer {
@@ -1218,6 +1231,15 @@ button {
 
   .headerDivLokacija {
     width: 1000px;
+  }
+
+  .contacts {
+    margin-left: 0;
+  }
+
+  .footerRight {
+    margin-left: 20px;
+    text-align: center;
   }
 }
 
@@ -1309,29 +1331,9 @@ button {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  .headerDiv {
-    width: 320px;
-  }
-  .headerDivLokacija {
-    width: 320px;
-  }
-
-  .salonImage {
-    width: 300px;
-  }
-
-  .cardContainer {
-    width: 270px;
-  }
-
-  .workersImg {
-    width: 80px;
-    height: 80px;
-  }
-
-  .workersBio {
-    font-size: 14px;
+@media only screen and (max-width: 430px) {
+  .rezervacija {
+    width: 350px;
   }
 }
 
@@ -1522,8 +1524,42 @@ button {
   }
 
   .locationContainer {
-    max-width: 400px;
+    max-width: 435px;
   }
+}
+
+@media only screen and (max-width: 450px) {
+  .locationContainer {
+    max-width: 381px;
+    height: 300px;
+  }
+
+  .headerDivLokacija {
+    max-width: 350px;
+  }
+}
+
+@media only screen and (max-width: 395px) {
+  .locationContainer {
+    max-width: 340px;
+    height: 300px;
+  }
+
+  .headerDivLokacija {
+    max-width: 340px;
+  }
+
+  .buttonRezerviraj {
+    padding: 6px;
+  }
+
+  .buttonLeftMargin {
+    margin-left: 6px;
+  }
+}
+
+.uvjetiKoristenja {
+  margin-bottom: 0;
 }
 
 .buttonLokacijaHeader {
@@ -1595,7 +1631,7 @@ button {
   }
 
   .footer {
-    margin-top: 20px;
+    margin-top: 60px;
     margin-bottom: 20px;
   }
 
@@ -1743,6 +1779,23 @@ button {
   }
 }
 
+@media only screen and (max-width: 420px) {
+  .rezervacijeContainer {
+    width: 350px;
+    display: flex;
+    align-items: center;
+  }
+
+  .rezervacija {
+    width: 340px;
+    padding: 5px;
+  }
+
+  .buttonMojeRezervacije {
+    padding: 5px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .headerDiv {
     width: 430px;
@@ -1759,20 +1812,13 @@ button {
     width: 380px;
     margin-top: 20px;
   }
+
   .headerDiv {
-    width: 380px;
+    width: 401px;
   }
 
   .headerDivLokacija {
-    width: 380px;
-  }
-
-  .rezervacijeContainer {
-    width: 380px;
-  }
-
-  .rezervacija {
-    width: 380px;
+    width: 401px;
   }
 
   .buttons-hamburger {
@@ -1781,10 +1827,79 @@ button {
   }
 
   .salonImage {
-    width: 380px;
+    width: 401px;
   }
 
   .cardContainer {
-    width: 330px;
+    width: 345px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .headerDiv {
+    width: 350px;
+  }
+
+  .salonImage {
+    width: 360px;
+  }
+
+  .cardContainer {
+    width: 305px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .signUp {
+    margin-bottom: 80px;
+  }
+
+  .logIn {
+    margin-bottom: 35px;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .profileContainer {
+    width: 300px;
+  }
+
+  .headerDiv {
+    width: 300px;
+  }
+
+  .bookContainer {
+    width: 350px;
+  }
+
+  .naslovDiv {
+    width: 350px;
+  }
+
+  .salonImage {
+    width: 320px;
+  }
+
+  .cardContainer {
+    width: 280px;
+  }
+
+  .footerRight {
+    font-size: 12px;
+    text-align: center;
+    width: 300px;
+  }
+
+  .uvjetiKoristenja {
+    font-size: 12px;
+  }
+
+  .autorskaPrava {
+    font-size: 12px;
+  }
+
+  .cardComponentImage {
+    height: 110px;
   }
 }

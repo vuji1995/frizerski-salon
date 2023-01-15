@@ -40,14 +40,14 @@ const Rezervacije = () => {
             <img src={Logo} alt="logo" className="logoImg" />
           </Link>
 
-          <div className="buttons">
+          <div className="buttonsMojeRezervacije">
             {loggedIn ? (
               <>
                 <Link to="/costumer">
-                  <button className="buttonRezerviraj">Profil</button>
+                  <button className="buttonMojeRezervacije">Profil</button>
                 </Link>
                 <Link to="/book-now">
-                  <button className="buttonRezerviraj buttonLeftMargin">
+                  <button className="buttonMojeRezervacije buttonLeftMargin">
                     Rezerviraj odmah
                   </button>
                 </Link>
@@ -55,10 +55,10 @@ const Rezervacije = () => {
             ) : (
               <>
                 <Link to="/sign-in">
-                  <button className="buttonRezerviraj">Prijavi se</button>
+                  <button className="buttonMojeRezervacije">Prijavi se</button>
                 </Link>
                 <Link to="/book-now">
-                  <button className="buttonRezerviraj buttonLeftMargin">
+                  <button className="buttonMojeRezervacije buttonLeftMargin">
                     Rezerviraj odmah
                   </button>
                 </Link>

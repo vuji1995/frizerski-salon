@@ -42,11 +42,13 @@ const Footer = () => {
           </div>
         </div>
         <div className="footerRight">
-          <p>
+          <p className="autorskaPrava">
             Autorska prava © Ritual, zajednički obrt za frizerske usluge, vl.
             Nedjeljko Lešina i Ante Šolić. Sva prava pridržana.
           </p>
-          <p>Uvjeti korištenja & Politika privatnosti</p>
+          <p className="uvjetiKoristenja">
+            Uvjeti korištenja & Politika privatnosti
+          </p>
         </div>
       </div>
     </div>

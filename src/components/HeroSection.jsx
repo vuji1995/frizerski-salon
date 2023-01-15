@@ -1,6 +1,6 @@
 import SalonImg from "../assests/salon.jpeg";
 import Card from "./Card";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
 import Context from "../Context/Context";
@@ -41,6 +41,12 @@ const HeroSection = () => {
     window.addEventListener("resize", handleResize);
   }, []);
 
+  const navigate = useNavigate();
+
+  const goToLokacija = () => {
+    navigate("/location");
+  };
+
   return (
     <div className="heroMain">
       {modalOpened ? (
@@ -61,10 +67,7 @@ const HeroSection = () => {
             >
               Korisnici
             </li>
-            <li
-              className="headerLiItem-hamburger"
-              onClick={scrollIntoKorisnici}
-            >
+            <li className="headerLiItem-hamburger" onClick={goToLokacija}>
               Lokacija
             </li>
           </ul>

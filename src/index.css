@@ -193,7 +193,7 @@ header {
 
 .salonImage {
   border-radius: 10px;
-  object-fit: contain;
+  object-fit: cover;
   height: auto;
 }
 
@@ -255,6 +255,7 @@ header {
   height: 100px;
   border-radius: 30px;
   transform: scale(1.1);
+  object-fit: cover;
 }
 
 .removeMarginP {
@@ -1199,6 +1200,11 @@ button {
   .salonImage {
     width: 1200px;
   }
+
+  .mainContainer {
+    width: 1300px;
+  }
+
   .footer {
     margin-top: 30px;
   }
@@ -1208,6 +1214,11 @@ button {
   .salonImage {
     width: 1000px;
   }
+
+  .mainContainer {
+    width: 1050px;
+  }
+
   .cardContainer {
     width: 500px;
   }
@@ -1219,6 +1230,10 @@ button {
   }
   .cardContainer {
     width: 500px;
+  }
+
+  .mainContainer {
+    width: 1100px;
   }
 
   .footerDiv {
@@ -1341,6 +1356,11 @@ button {
   .salonImage {
     width: 800px;
   }
+
+  .mainContainer {
+    width: 1000px;
+  }
+
   .cardContainer {
     width: 480px;
   }
@@ -1377,6 +1397,11 @@ button {
   .salonImage {
     width: 640px;
   }
+
+  .mainContainer {
+    width: 700px;
+  }
+
   .cardContainer {
     width: 440px;
   }
@@ -1404,6 +1429,11 @@ button {
   .salonImage {
     width: 520px;
   }
+
+  .mainContainer {
+    width: 580px;
+  }
+
   .cardContainer {
     width: 410px;
   }
@@ -1413,6 +1443,11 @@ button {
   .salonImage {
     width: 480px;
   }
+
+  .mainContainer {
+    width: 500px;
+  }
+
   .cardContainer {
     width: 400px;
   }
@@ -1457,6 +1492,10 @@ button {
 
   .salonImage {
     max-width: 530px;
+  }
+
+  .mainContainer {
+    width: 550px;
   }
 
   .workersContainer {
@@ -1587,6 +1626,10 @@ button {
 
   .salonImage {
     max-width: 430px;
+  }
+
+  .mainContainer {
+    width: 460px;
   }
 
   .workersContainer {
@@ -1830,6 +1873,10 @@ button {
     width: 401px;
   }
 
+  .mainContainer {
+    width: 430px;
+  }
+
   .cardContainer {
     width: 345px;
     text-align: center;
@@ -1839,6 +1886,10 @@ button {
 @media only screen and (max-width: 420px) {
   .headerDiv {
     width: 350px;
+  }
+
+  .mainContainer {
+    width: 400px;
   }
 
   .salonImage {
@@ -1875,6 +1926,10 @@ button {
 
   .naslovDiv {
     width: 350px;
+  }
+
+  .mainContainer {
+    width: 380px;
   }
 
   .salonImage {

@@ -1001,6 +1001,64 @@ button {
   font-family: "Rubik";
 }
 
+.forgotPasswordDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.forgotPasswordContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 50vh;
+}
+
+.forgotPasswordForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  width: 500px;
+  border-top: 3px solid rgb(171, 0, 8);
+}
+
+.forgotPasswordForm h2 {
+  font-family: "Rubik";
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
+.forgotPasswordInput {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.forgotPasswordInput:focus {
+  outline: 1px solid rgb(171, 0, 8);
+}
+
+.forgotPasswordButton {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: 1px solid rgb(171, 0, 8);
+  border-radius: 0.75rem;
+  background-color: rgb(171, 0, 8);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
 /* RESPONSIVE -------------------------------------------------------------------- */
 
 .hamburgerContainer {

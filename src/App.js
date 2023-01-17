@@ -3,7 +3,6 @@ import MainPage from "./pages/MainPage";
 import SignIn from "./pages/SignIn";
 import Rezerviraj from "./pages/Rezerviraj";
 import SignUp from "./pages/SignUp";
-import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Rezervacije from "./pages/Rezervacije";
 import Lokacija from "./pages/Lokacija";
 import { ContextProvider } from "./Context/Context";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/book-now" element={<Rezerviraj />} />
             <Route path="/location" element={<Lokacija />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/costumer" element={<PrivateRoute />}>
               <Route path="/costumer" element={<Profile />} />
               <Route path="/costumer/reservations" element={<Rezervacije />} />

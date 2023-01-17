@@ -34,10 +34,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Ritual Barbershop
-      </Link>{" "}
-      {new Date().getFullYear()}
+      <Link color="inherit">Ritual Barbershop</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
@@ -286,7 +283,7 @@ const SignUp = () => {
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href="/sign-in" variant="body2" color="rgb(171, 0, 8)">
-                    Vec imas korisnicki racun? Ulogiraj se
+                    Imaš korisnički račun? Ulogiraj se
                   </Link>
                 </Grid>
               </Grid>

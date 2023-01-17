@@ -1,7 +1,7 @@
 import Logo from "../assests/ritualLogo.jpg";
-import { Link as Link2, useNavigate } from "react-router-dom";
+import { Link as Link2 } from "react-router-dom";
 import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
 //MUI
 import * as React from "react";
@@ -28,7 +28,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit">Barbershop Ritual</Link> {new Date().getFullYear()}
+      <Link color="inherit">Ritual Barbershop</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
@@ -36,43 +36,42 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-const SignIn = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
 
-  const { email, password } = formData;
-  const navigate = useNavigate();
-
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
+  const setEmailAdress = (e) => {
+    setEmail(e.target.value);
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const isEmailValid = (email) => {
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(email);
+  };
 
-    try {
+  const sendEmailReset = (e) => {
+    let error = false;
+    e.preventDefault();
+    if (!isEmailValid(email)) {
+      toast.error("Nevažeći email");
+      error = true;
+    }
+
+    if (!error) {
       const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      if (userCredential.user) {
-        navigate("/costumer");
-      }
-      toast.success(`You have successfuly logged in!`);
-    } catch (error) {
-      toast.error(`Wrong username or password!`);
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          toast.success("Email za resetiranje lozinke je poslan!");
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Pogrešna email adresa!");
+        });
     }
   };
 
   return (
-    <div>
+    <div className="forgotPasswordDiv">
       <header>
         <div className="headerDiv">
           <Link2 to="/" className="logoDiv">
@@ -100,9 +99,9 @@ const SignIn = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Prijavi se
+              Resetiraj Lozinku
             </Typography>
-            <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -112,23 +111,9 @@ const SignIn = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={onChange}
+                onChange={setEmailAdress}
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Lozinka"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={onChange}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Zapamti me"
-              />
+
               <Button
                 type="submit"
                 fullWidth
@@ -141,17 +126,14 @@ const SignIn = () => {
                     bgcolor: "rgb(93, 6, 11)",
                   },
                 }}
+                onClick={sendEmailReset}
               >
-                Prijavi se
+                Pošalji
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link
-                    href="/forgot-password"
-                    variant="body2"
-                    color="rgb(171, 0, 8)"
-                  >
-                    Zaboravili ste lozinku?
+                  <Link href="/sign-in" variant="body2" color="rgb(171, 0, 8)">
+                    Ulogiraj se
                   </Link>
                 </Grid>
                 <Grid item>
@@ -169,4 +151,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ForgotPassword;

@@ -1,4 +1,4 @@
-import Logo from "../assests/ritualLogo.jpg";
+import Logo from "../assests/logo2023.png";
 import { Link as Link2, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -26,11 +26,7 @@ function Copyright(props) {
       color="text.secondary"
       align="center"
       {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit">Barbershop Ritual</Link> {new Date().getFullYear()}
-      {"."}
-    </Typography>
+    ></Typography>
   );
 }
 

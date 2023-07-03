@@ -93,7 +93,7 @@ const HeroSection = () => {
       )}
       <div className="mainContainer">
         <div className="heroTekst">
-          <p className="heroTekstTitle">Barbershop Ritual</p>
+          <p className="heroTekstTitle">Barbershop Fade</p>
           <p className="regularTekst">Tradicionalna usluga na moderan način.</p>
           <Link to="/book-now">
             <button className="buttonRezerviraj xl">Rezerviraj odmah</button>

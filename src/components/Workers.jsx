@@ -13,7 +13,7 @@ const Workers = () => {
       <div className="workersContainer">
         <div className="workerDiv">
           <img src={Barber4} alt="workersImage" className="workersImg" />
-          <p className="workersName">Ante</p>
+          <p className="workersName">Ivo</p>
           <p className="workersBio">
             Čovjek s bradom. Umjetnik sa škarama. Ljubimac dobrog craft piva,
             također.
@@ -21,7 +21,7 @@ const Workers = () => {
         </div>
         <div className="workerDiv">
           <img src={Barber5} alt="workersImage" className="workersImg" />
-          <p className="workersName">Nedjeljko</p>
+          <p className="workersName">Mario</p>
           <p className="workersBio">
             Danju barber - noću glazbenik. Jednako dobar sa britvom i sa tipkama
             harmonike.
@@ -29,36 +29,37 @@ const Workers = () => {
         </div>
         <div className="workerDiv">
           <img src={Women11} alt="workersImage" className="workersImg" />
-          <p className="workersName">Anamarija</p>
+          <p className="workersName">Josipa</p>
           <p className="workersBio">
             Dio prvi duše salona. Osmijeh u ogledalu. Barberica do srži.
           </p>
         </div>
         <div className="workerDiv">
           <img src={Women10} alt="workersImage" className="workersImg" />
-          <p className="workersName">Antonia</p>
+          <p className="workersName">Marija</p>
           <p className="workersBio">
             Dio drugi bez duše, ali je zato alt po glasu i zvir po stasu.
           </p>
         </div>
         <div className="workerDiv">
           <img src={Women14} alt="workersImage" className="workersImg" />
-          <p className="workersName">Marina</p>
+          <p className="workersName">Helena</p>
           <p className="workersBio">
-            Ako se po jutru dan poznaje, zbog naše Marine u Rituala je uvijek
+            Ako se po jutru dan poznaje, zbog naše Helene u Fade-u je uvijek
             nasmiješeno i vedro.
           </p>
         </div>
         <div className="workerDiv">
           <img src={Barber7} alt="workersImage" className="workersImg" />
-          <p className="workersName">Grgo</p>
+          <p className="workersName">Josip</p>
           <p className="workersBio">
-            Hladno pivo i Pušenje u jednome. Čovik, drug i starješina. Naš Grec.
+            Hladno pivo i Pušenje u jednome. Čovik, drug i starješina. Naš
+            Josip.
           </p>
         </div>
         <div className="workerDiv">
           <img src={Women12} alt="workersImage" className="workersImg" />
-          <p className="workersName">Ana</p>
+          <p className="workersName">Ivana</p>
           <p className="workersBio">
             Ako ćemo pivat i plesat, evo je. Ako ćemo šišat i brijat, tu je. Zna
             sve o vinu i dobrom selfiju!
@@ -66,7 +67,7 @@ const Workers = () => {
         </div>
         <div className="workerDiv">
           <img src={Women13} alt="workersImage" className="workersImg" />
-          <p className="workersName">Tonija</p>
+          <p className="workersName">Lucija</p>
           <p className="workersBio">
             Naša mezimica…ako želiš top fade pogodit će te preciznije od Željka
             Mavrovića!

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../assests/ritualLogo.jpg";
+import Logo from "../assests/logo2023.png";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import * as React from "react";
@@ -73,7 +73,7 @@ const Rezervacije = () => {
           <h2 className="headingReserv">Moje rezervacije</h2>
         </div>
         {reservations === undefined ? (
-          <p>Please wait</p>
+          <p>Nema rezervacija</p>
         ) : (
           reservations.map((booking, indx) => {
             return (

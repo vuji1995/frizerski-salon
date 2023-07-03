@@ -186,7 +186,7 @@ header {
 }
 
 .cardTekst {
-  margin-top: 80px;
+  margin-top: 30px;
   font-family: "Rubik";
   font-weight: 300;
 }
@@ -380,7 +380,7 @@ header {
 .footerLeft {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .contacts {
@@ -389,7 +389,6 @@ header {
   justify-content: center;
   flex-direction: column;
   padding: 10px;
-  margin-left: 30px;
   font-family: "Rubik";
 }
 
@@ -1231,13 +1230,17 @@ button {
   }
 
   .cardComponentImage {
-    height: 180px;
+    height: 20px;
   }
 
   .cardTekst {
     margin-top: 25px;
     font-size: 16px;
   }
+}
+
+.imageHeight {
+  height: 200px;
 }
 
 @media only screen and (max-width: 1060px) {
@@ -2014,5 +2017,98 @@ button {
 
   .cardComponentImage {
     height: 110px;
+  }
+}
+
+@media only screen and (max-width: 382px) {
+  .mainContainer {
+    width: 360px;
+  }
+}
+
+@media only screen and (max-width: 361px) {
+  .mainContainer {
+    width: 340px;
+  }
+}
+
+@media only screen and (max-width: 341px) {
+  .mainContainer {
+    width: 320px;
+  }
+  .salonImage {
+    width: 320px;
+  }
+
+  .cardContainer {
+    width: 290px;
+  }
+
+  .heroTekstTitle {
+    font-size: 24px;
+  }
+
+  .regularTekst {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .mainContainer {
+    width: 300px;
+  }
+
+  .headerDiv {
+    width: 290px;
+  }
+
+  .cardContainer {
+    width: 250px;
+  }
+
+  .salonImage {
+    width: 280px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .headerDiv {
+    width: 250px;
+  }
+
+  .logoImg {
+    width: 60px;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  .headerDiv {
+    width: 240px;
+  }
+
+  .mainContainer {
+    width: 250px;
+  }
+
+  .cardContainer {
+    width: 220px;
+  }
+
+  .salonImage {
+    width: 210px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .mainContainer {
+    width: 260px;
+  }
+
+  .salonImage {
+    width: 220px;
+  }
+
+  .cardContainer {
+    width: 200px;
   }
 }

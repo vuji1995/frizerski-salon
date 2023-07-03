@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Logo from "../assests/ritualLogo.jpg";
+import Logo from "../assests/logo2023.png";
 import Footer from "../components/Footer";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import HairIcon from "../assests/hair.png";
 import BeardIcon from "../assests/beard.png";
@@ -14,7 +14,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useAuthStatus } from "../hooks/useAuthStatus";
-import BackgroundElement from "../assests/backgroundElement.svg";
+import { v4 as uuid } from "uuid";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import AccessTimeSharpIcon from "@mui/icons-material/AccessTimeSharp";
@@ -29,7 +29,6 @@ import {
   doc,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import uuid from "react-uuid";
 import { getAuth } from "firebase/auth";
 
 const Rezerviraj = () => {
@@ -107,7 +106,6 @@ const Rezerviraj = () => {
     if (fetching) {
       const fetchData = async () => {
         try {
-          setSchedule([]);
           const barbers_name = barber;
           const freeTimeRef = collection(db, `${barbers_name}`);
           const q = query(freeTimeRef);
@@ -119,16 +117,19 @@ const Rezerviraj = () => {
           });
           setSchedule(updatedSchedule);
         } catch (error) {
+          console.log(error);
           toast.error(error);
         } finally {
           setLoading(false);
-          setFetching(false);
           setWaitingSchedule(false);
+          setFetching(false);
         }
       };
       fetchData();
     }
   }, [fetching, barber, schedule]);
+
+  console.log(fetching);
 
   const [modalOpened, setModalOpened] = useState(false);
   const [hour, setHour] = useState("");
@@ -190,7 +191,7 @@ const Rezerviraj = () => {
         const radnoVrijeme = d.data().radno_vrijeme;
         const index = radnoVrijeme[firebaseDay].indexOf(hour);
         radnoVrijeme[firebaseDay].splice(index, 1);
-        console.log(modalBookingData);
+
         updates.push(updateDoc(d.ref, { radno_vrijeme: radnoVrijeme }));
       });
 
@@ -279,7 +280,7 @@ const Rezerviraj = () => {
                       display: "flex",
                       alignItems: "center",
                     }}
-                    key={`menu-item-1`}
+                    key={uuid()}
                   >
                     <img
                       src={HairIcon}
@@ -298,7 +299,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`menu-item-2`}
+                    key={uuid()}
                   >
                     <img
                       src={BeardIcon}
@@ -315,7 +316,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`menu-item-3`}
+                    key={uuid()}
                   >
                     <img
                       src={BeardAndHairIcon}
@@ -351,7 +352,7 @@ const Rezerviraj = () => {
                       removeObaveznoPolje2();
                       popupState.close();
                     }}
-                    key={`barber-1`}
+                    key={uuid()}
                   >
                     <p style={{ width: "200px" }}>Ante Antić</p>
                   </MenuItem>
@@ -364,7 +365,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-2`}
+                    key={uuid()}
                   >
                     <p>Antonia Ivić</p>
                   </MenuItem>
@@ -377,7 +378,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-3`}
+                    key={uuid()}
                   >
                     <p>Anamarija Marić</p>
                   </MenuItem>
@@ -390,7 +391,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-4`}
+                    key={uuid()}
                   >
                     <p>Ivan Mamić</p>
                   </MenuItem>
@@ -403,7 +404,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-5`}
+                    key={uuid()}
                   >
                     <p>Grgo Karlić</p>
                   </MenuItem>
@@ -416,7 +417,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-6`}
+                    key={uuid()}
                   >
                     <p>Marina Horva</p>
                   </MenuItem>
@@ -429,7 +430,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-7`}
+                    key={uuid()}
                   >
                     <p>Tonia Šarić</p>
                   </MenuItem>
@@ -442,7 +443,7 @@ const Rezerviraj = () => {
                       popupState.close();
                     }}
                     style={{ display: "flex", alignItems: "center" }}
-                    key={`barber-8`}
+                    key={uuid()}
                   >
                     <p>Ana Lončar</p>
                   </MenuItem>
@@ -476,7 +477,7 @@ const Rezerviraj = () => {
                     return (
                       <p
                         className="sat"
-                        key={`mon-${indx}`}
+                        key={uuid()}
                         data-value={date[0]}
                         data-day={"Mon"}
                         onClick={openBookingModal}
@@ -500,7 +501,7 @@ const Rezerviraj = () => {
                     return (
                       <p
                         className="sat"
-                        key={`tue-${indx}`}
+                        key={uuid()}
                         data-value={date[1]}
                         data-day={"Tue"}
                         onClick={openBookingModal}
@@ -524,7 +525,7 @@ const Rezerviraj = () => {
                     return (
                       <p
                         className="sat"
-                        key={`wen-${indx}`}
+                        key={uuid()}
                         data-value={date[2]}
                         data-day={"Wen"}
                         onClick={openBookingModal}
@@ -548,7 +549,7 @@ const Rezerviraj = () => {
                     return (
                       <p
                         className="sat"
-                        key={`thu-${indx}`}
+                        key={uuid()}
                         data-value={date[3]}
                         data-day={"Thu"}
                         onClick={openBookingModal}
@@ -572,7 +573,7 @@ const Rezerviraj = () => {
                     return (
                       <p
                         className="sat"
-                        key={`fri-${indx}`}
+                        key={uuid()}
                         data-value={date[4]}
                         data-day={"Fri"}
                         onClick={openBookingModal}
@@ -596,7 +597,7 @@ const Rezerviraj = () => {
                     return (
                       <p
                         className="sat"
-                        key={`sat-${indx}`}
+                        key={uuid()}
                         data-value={date[5]}
                         data-day={"Saturday"}
                         onClick={openBookingModal}

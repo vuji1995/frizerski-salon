@@ -1,4 +1,4 @@
-import Logo from "../assests/ritualLogo.jpg";
+import Logo from "../assests/logo2023.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import MenuIcon from "@mui/icons-material/Menu";

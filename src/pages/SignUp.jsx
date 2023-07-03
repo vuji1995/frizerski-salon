@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import Logo from "../assests/ritualLogo.jpg";
+import Logo from "../assests/logo2023.png";
 import { Link as Link2, Navigate } from "react-router-dom";
 import {
   getAuth,
@@ -32,11 +32,7 @@ function Copyright(props) {
       color="text.secondary"
       align="center"
       {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit">Ritual Barbershop</Link> {new Date().getFullYear()}
-      {"."}
-    </Typography>
+    ></Typography>
   );
 }
 

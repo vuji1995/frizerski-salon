@@ -1,4 +1,4 @@
-import CardLogo from "../assests/cardLogo.jpg.png";
+import CardLogo from "../assests/logo2-2023.png";
 import FacebookLogo from "../assests/icons8-facebook-48.png";
 import InstagramLogo from "../assests/icons8-instagram-48.png";
 import PhoneLogo from "../assests/icons8-phone-48.png";
@@ -6,12 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Footer = () => {
   const openFacebookPage = () => {
-    window.open("https://www.facebook.com/barbershopritual/", "_blank");
+    window.open("https://www.facebook.com", "_blank");
     console.log(`opened`);
   };
 
   const openInstagramPage = () => {
-    window.open("https://www.instagram.com/barbershopritual/?hl=hr", "_blank");
+    window.open("https://www.instagram.com", "_blank");
   };
 
   const copyPhoneNumber = () => {};
@@ -29,27 +29,19 @@ const Footer = () => {
                 className="icon"
                 onClick={copyPhoneNumber}
               />
-              <p>+385 91 344 4443</p>
+              <p>+385 91 000 0000</p>
             </div>
             <div className="facebook" onClick={openFacebookPage}>
               <img src={FacebookLogo} alt="fbLogo" className="icon" />
-              <p>Barbershop Ritual</p>
+              <p>Barbershop Fade</p>
             </div>
             <div className="instagram" onClick={openInstagramPage}>
               <img src={InstagramLogo} alt="instagramLogo" className="icon" />
-              <p>Barbershop Ritual</p>
+              <p>Barbershop Fade</p>
             </div>
           </div>
         </div>
-        <div className="footerRight">
-          <p className="autorskaPrava">
-            Autorska prava © Ritual, zajednički obrt za frizerske usluge, vl.
-            Nedjeljko Lešina i Ante Šolić. Sva prava pridržana.
-          </p>
-          <p className="uvjetiKoristenja">
-            Uvjeti korištenja & Politika privatnosti
-          </p>
-        </div>
+        <div className="footerRight"></div>
       </div>
     </div>
   );
